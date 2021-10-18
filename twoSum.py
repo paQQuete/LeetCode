@@ -52,10 +52,13 @@ class Solution:
 
         return result
 
-    def parse_inputlist(inp: str) -> list:
+
+
+    def input_pr(inp: str) -> list:
         result = list()
-        inp = inp.split('[')
-        inp = inp.split(']')
+        if inp[0] and inp[-1]:
+            inp = inp[1:-1]
+
         inp = inp.split(',')
         for each in inp:
             try:
@@ -66,17 +69,20 @@ class Solution:
 
         return result
 
+    def expected(res: list) -> str:
+        result = str()
+        str_res_list = [str(num) for num in res]
+        nums_str = ','.join(str_res_list)
+
+        return '[' + nums_str + ']'
+
+
 if __name__ == '__main__':
     # nums = [4, 5, 34, 2, 77645, 345, 789, 45787, 3323, 23, 4, 56, 7, 8, 9, 3, 2]
     # target = int(6)
-    nums = Solution.parse_inputlist(input())
+    nums = Solution.input_pr(input())
     target = int(input())
 
     if Solution.proverka(nums, target) and Solution.type_validation(nums, target):
-        result = Solution.twoSum(nums, target)
-
-    else:
-        print('Proverka ne proydena')
-
-
-    print(result)
+        result = Solution.twoSum(nums=nums, target=target)
+        result = Solution.expected(result)
