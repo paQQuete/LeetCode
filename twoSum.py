@@ -1,5 +1,17 @@
 class Solution:
-    def proverka(nums: list[int], target: int) -> bool:
+    def __init__(self):
+        """
+        LeetCode send all input only in first stdin.
+        Probably like a two string with
+        """
+        super().__init__()
+        # self._listnums = True
+        # self._targetnum = True
+        # While isinstance(self._listnums, bool) and isinstance(self._targetnum, bool):
+        self._listnums = self._input_pr(input('please input list of numbers'))
+        self._targetnum = self._input_pr(input('please input target num'))
+
+    def _proverka(nums: list[int], target: int) -> bool:
         ans1 = True
         ans2 = True
 
@@ -19,7 +31,7 @@ class Solution:
         else:
             return True
 
-    def type_validation(nums, target) -> bool:
+    def _type_validation(nums, target) -> bool:
         ans1 = True
         ans2 = True
 
@@ -35,7 +47,7 @@ class Solution:
         else:
             return True
 
-    def twoSum(nums: list[int], target: int):
+    def _worker(nums: list[int], target: int):
         work_dict = {index: num for index, num in enumerate(nums)}
         result = None
         for index, num in work_dict.items():
@@ -52,24 +64,44 @@ class Solution:
 
         return result
 
+    def twoSum(self, nums: list[int], target: int) -> str:
+        """
+        bound method,
+        нужно возвращать уже готовый результат под выполнение в ЛитКод
+        """
 
 
-    def input_pr(inp: str) -> list:
-        result = list()
-        if inp[0] and inp[-1]:
-            inp = inp[1:-1]
+        if self._proverka(nums, target) and self._type_validation(nums, target):
+            result = self._worker(nums, target)
+            result = self._output_pr(result)
 
-        inp = inp.split(',')
-        for each in inp:
-            try:
-                num = int(each)
-                result.append(num)
-            except:
-                continue
 
         return result
 
-    def expected(res: list) -> str:
+
+    def _input_pr(inp: str):
+        result = list()
+        if inp[0] == '[' and inp[-1] == ']':
+            inp = inp[1:-1]
+
+            inp = inp.split(',')
+            for each in inp:
+                # try:
+                    num = int(each)
+                    result.append(num)
+                # except:
+                #     continue
+            return result
+
+        elif isinstance(int(inp), int):
+            return int(inp)
+
+
+
+
+
+
+    def _output_pr(res: list) -> str:
         result = str()
         str_res_list = [str(num) for num in res]
         nums_str = ','.join(str_res_list)
@@ -78,11 +110,10 @@ class Solution:
 
 
 if __name__ == '__main__':
-    # nums = [4, 5, 34, 2, 77645, 345, 789, 45787, 3323, 23, 4, 56, 7, 8, 9, 3, 2]
-    # target = int(6)
-    nums = Solution.input_pr(input())
-    target = int(input())
+#     # nums = [4, 5, 34, 2, 77645, 345, 789, 45787, 3323, 23, 4, 56, 7, 8, 9, 3, 2]
+#     # target = int(6)
+#     # nums = Solution.input_pr(input())
+#     # target = int(input())
 
-    if Solution.proverka(nums, target) and Solution.type_validation(nums, target):
-        result = Solution.twoSum(nums=nums, target=target)
-        result = Solution.expected(result)
+    print(Solution().twoSum())
+
