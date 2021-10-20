@@ -1,17 +1,17 @@
 class Solution:
-    def __init__(self):
-        """
-        LeetCode send all input only in first stdin.
-        Probably like a two string with
-        """
-        super().__init__()
-        # self._listnums = True
-        # self._targetnum = True
-        # While isinstance(self._listnums, bool) and isinstance(self._targetnum, bool):
-        self._listnums = self._input_pr(input('please input list of numbers'))
-        self._targetnum = self._input_pr(input('please input target num'))
+    # def __init__(self):
+    #     """
+    #     LeetCode send all input only in first stdin.
+    #     Probably like a two string with
+    #     """
+    #     super().__init__()
+    #     # self._listnums = True
+    #     # self._targetnum = True
+    #     # While isinstance(self._listnums, bool) and isinstance(self._targetnum, bool):
+    #     self._listnums = self._input_pr(input('please input list of numbers'))
+    #     self._targetnum = self._input_pr(input('please input target num'))
 
-    def _proverka(nums: list[int], target: int) -> bool:
+    def _proverka(self, nums: list[int], target: int) -> bool:
         ans1 = True
         ans2 = True
 
@@ -31,7 +31,7 @@ class Solution:
         else:
             return True
 
-    def _type_validation(nums, target) -> bool:
+    def _type_validation(self, nums, target) -> bool:
         ans1 = True
         ans2 = True
 
@@ -47,7 +47,7 @@ class Solution:
         else:
             return True
 
-    def _worker(nums: list[int], target: int):
+    def _worker(self, nums: list[int], target: int):
         work_dict = {index: num for index, num in enumerate(nums)}
         result = None
         for index, num in work_dict.items():
@@ -64,44 +64,42 @@ class Solution:
 
         return result
 
-    def twoSum(self, nums: list[int], target: int) -> str:
+    def twoSum(self, nums: list[int], target: int, *args, **kwargs) -> str:
         """
         bound method,
         нужно возвращать уже готовый результат под выполнение в ЛитКод
         """
-
+        # self._listnums = self._input_pr()
+        # self._targetnum = self._input_pr()
+        self._listnums = nums
+        self._targetnum = target
 
         if self._proverka(nums, target) and self._type_validation(nums, target):
-            result = self._worker(nums, target)
-            result = self._output_pr(result)
+            return self._worker(nums, target, *args, **kwargs)
+        else:
+            return 'inupt doesnt valid'
 
 
-        return result
 
-
-    def _input_pr(inp: str):
+    def _input_pr(self):
         result = list()
+        inp = input()
         if inp[0] == '[' and inp[-1] == ']':
             inp = inp[1:-1]
 
             inp = inp.split(',')
             for each in inp:
                 # try:
-                    num = int(each)
-                    result.append(num)
-                # except:
-                #     continue
+                num = int(each)
+                result.append(num)
+            # except:
+            #     continue
             return result
 
-        elif isinstance(int(inp), int):
+        else:
             return int(inp)
 
-
-
-
-
-
-    def _output_pr(res: list) -> str:
+    def _output_pr(self, res: list) -> str:
         result = str()
         str_res_list = [str(num) for num in res]
         nums_str = ','.join(str_res_list)
@@ -109,11 +107,15 @@ class Solution:
         return '[' + nums_str + ']'
 
 
+# if __name__ == '__main__':
+#     #     # nums = [4, 5, 34, 2, 77645, 345, 789, 45787, 3323, 23, 4, 56, 7, 8, 9, 3, 2]
+#     #     # target = int(6)
+#     #     # nums = Solution.input_pr(input())
+#     #     # target = int(input())
+#
+#     print(Solution().twoSum())
+
 if __name__ == '__main__':
-#     # nums = [4, 5, 34, 2, 77645, 345, 789, 45787, 3323, 23, 4, 56, 7, 8, 9, 3, 2]
-#     # target = int(6)
-#     # nums = Solution.input_pr(input())
-#     # target = int(input())
-
-    print(Solution().twoSum())
-
+    nums = [4, 5, 34, 2, 77645, 345, 789, 45787, 3323, 23, 4, 56, 7, 8, 9, 3, 2]
+    target = int(6)
+    Solution().twoSum(nums, target)
