@@ -8,10 +8,35 @@ class ListNode:
 class Solution:
 
     @staticmethod
-    def reversalLinkedList(head, linkedList):
-        current = head
+    def reversalLinkedList(cascadeList):
+        current = cascadeList
         prev = None
         next_node = None
+
+        while current is not None:
+            next_node = current.next
+            current.next = prev
+            prev = current
+            current = next_node
+
+        return prev
+
+    @staticmethod
+    def extractValues(cascadeList) -> int:
+        extrValue = str()
+        current = cascadeList
+        while current is not None:
+            extrValue += str(current.val)
+            current = current.next
+
+        return int(extrValue)
+
+    @staticmethod
+    def unpackSolution(sum: int) -> list:
+        return sum.split('')
+
+
+
 
     # @staticmethod
     # def searchHead(node) -> bool:
@@ -22,11 +47,19 @@ class Solution:
 
 
 if __name__ == '__main__':
-    Solution.addTwoNumbers(l1=ListNode(val=2, next=
+    l1, l2 = Solution.addTwoNumbers(l1=ListNode(val=2, next=
                                     ListNode(val=4, next=
                                              ListNode(val=3))),
                            l2=ListNode(val=5, next=
                                     ListNode(val=6, next=
                                              ListNode(val=4))))
 
+
+    l1reverse = Solution.reversalLinkedList(l1)
+    l2reverse = Solution.reversalLinkedList(l2)
+
+    l1revExtr = Solution.extractValues(l1reverse)
+    l2revExtr = Solution.extractValues(l2reverse)
+
+    rawSum = l1revExtr + l2revExtr
 
