@@ -31,9 +31,6 @@ class Solution:
 
         return int(extrValue)
 
-    @staticmethod
-    def unpackSolution(sum: int) -> list:
-        return sum.split('')
 
 
 
@@ -61,5 +58,10 @@ if __name__ == '__main__':
     l1revExtr = Solution.extractValues(l1reverse)
     l2revExtr = Solution.extractValues(l2reverse)
 
-    rawSum = l1revExtr + l2revExtr
+    rawSum = list(reversed(str(l1revExtr + l2revExtr)))
+    output = list()
+    for symbol in rawSum:
+        output.append(symbol)
+
+    print(output)
 
