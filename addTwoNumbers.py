@@ -40,28 +40,39 @@ class Solution:
     #
     @staticmethod
     def addTwoNumbers(l1, l2):
-        return l1, l2
+        l1reverse = Solution.reversalLinkedList(l1)
+        l2reverse = Solution.reversalLinkedList(l2)
+
+        l1revExtr = Solution.extractValues(l1reverse)
+        l2revExtr = Solution.extractValues(l2reverse)
+
+        rawSum = list(reversed(str(l1revExtr + l2revExtr)))
+        output = list()
+        for symbol in rawSum:
+            output.append(symbol)
+
+        return output
 
 
 if __name__ == '__main__':
-    l1, l2 = Solution.addTwoNumbers(l1=ListNode(val=2, next=
+    Solution.addTwoNumbers(l1=ListNode(val=2, next=
                                     ListNode(val=4, next=
                                              ListNode(val=3))),
                            l2=ListNode(val=5, next=
                                     ListNode(val=6, next=
                                              ListNode(val=4))))
-
-
-    l1reverse = Solution.reversalLinkedList(l1)
-    l2reverse = Solution.reversalLinkedList(l2)
-
-    l1revExtr = Solution.extractValues(l1reverse)
-    l2revExtr = Solution.extractValues(l2reverse)
-
-    rawSum = list(reversed(str(l1revExtr + l2revExtr)))
-    output = list()
-    for symbol in rawSum:
-        output.append(symbol)
-
-    print(output)
+    #
+    #
+    # l1reverse = Solution.reversalLinkedList(l1)
+    # l2reverse = Solution.reversalLinkedList(l2)
+    #
+    # l1revExtr = Solution.extractValues(l1reverse)
+    # l2revExtr = Solution.extractValues(l2reverse)
+    #
+    # rawSum = list(reversed(str(l1revExtr + l2revExtr)))
+    # output = list()
+    # for symbol in rawSum:
+    #     output.append(symbol)
+    #
+    # print(output)
 
