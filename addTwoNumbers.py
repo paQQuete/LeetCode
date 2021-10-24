@@ -1,3 +1,4 @@
+import json
 # Definition for singly-linked list.
 class ListNode:
     def __init__(self, val=0, next=None):
@@ -7,8 +8,8 @@ class ListNode:
 
 class Solution:
 
-    @staticmethod
-    def reversalLinkedList(cascadeList):
+
+    def reversalLinkedList(self, cascadeList):
         current = cascadeList
         prev = None
         next_node = None
@@ -21,8 +22,8 @@ class Solution:
 
         return prev
 
-    @staticmethod
-    def extractValues(cascadeList) -> int:
+
+    def extractValues(self, cascadeList) -> int:
         extrValue = str()
         current = cascadeList
         while current is not None:
@@ -35,44 +36,75 @@ class Solution:
 
 
 
-    # @staticmethod
-    # def searchHead(node) -> bool:
-    #
-    @staticmethod
-    def addTwoNumbers(l1, l2):
-        l1reverse = Solution.reversalLinkedList(l1)
-        l2reverse = Solution.reversalLinkedList(l2)
 
-        l1revExtr = Solution.extractValues(l1reverse)
-        l2revExtr = Solution.extractValues(l2reverse)
-
-        rawSum = list(reversed(str(l1revExtr + l2revExtr)))
-        output = list()
-        for symbol in rawSum:
-            output.append(symbol)
-
-        return output
+    def unpackSolution(self, sum: int) -> list:
+        return sum.split('')
 
 
-if __name__ == '__main__':
-    Solution.addTwoNumbers(l1=ListNode(val=2, next=
-                                    ListNode(val=4, next=
-                                             ListNode(val=3))),
-                           l2=ListNode(val=5, next=
-                                    ListNode(val=6, next=
-                                             ListNode(val=4))))
-    #
-    #
-    # l1reverse = Solution.reversalLinkedList(l1)
-    # l2reverse = Solution.reversalLinkedList(l2)
-    #
-    # l1revExtr = Solution.extractValues(l1reverse)
-    # l2revExtr = Solution.extractValues(l2reverse)
-    #
-    # rawSum = list(reversed(str(l1revExtr + l2revExtr)))
-    # output = list()
-    # for symbol in rawSum:
-    #     output.append(symbol)
-    #
-    # print(output)
 
+
+
+
+
+    def input_parse(self, inp_string):
+        inp_string = inp_string.replace('{', '(')
+        inp_string = inp_string.replace('}', ')')
+        inp_string = inp_string.replace(': ', '=')
+        inp_string = inp_string.replace(', ', ',')
+        # inp_list = inp_string.split()
+
+        return inp_string
+
+
+    def addTwoNumbers(self, l1, l2):
+
+
+
+        # l1 = eval(self.input_parse(l1))
+        # l2 = eval(self.input_parse(l2))
+
+
+        l1reverse = self.reversalLinkedList(l1)
+        l2reverse = self.reversalLinkedList(l2)
+
+        l1revExtr = self.extractValues(l1reverse)
+        l2revExtr = self.extractValues(l2reverse)
+
+        rawSum = l1revExtr + l2revExtr
+        revertSum = reversed(rawSum)
+
+
+
+
+
+        return l1revExtr + l2revExtr
+
+
+# if __name__ == '__main__':
+#     # l1, l2 = Solution.addTwoNumbers(l1=ListNode(val=2, next=
+#     #                                 ListNode(val=4, next=
+#     #                                          ListNode(val=3))),
+#     #                        l2=ListNode(val=5, next=
+#     #                                 ListNode(val=6, next=
+#     #                                          ListNode(val=4))))
+#     #
+#     #
+#     # l1reverse = Solution.reversalLinkedList(l1)
+#     # l2reverse = Solution.reversalLinkedList(l2)
+#     #
+#     # l1revExtr = Solution.extractValues(l1reverse)
+#     # l2revExtr = Solution.extractValues(l2reverse)
+#     #
+#     # rawSum = l1revExtr + l2revExtr
+#
+#     # inp_string = str(input('please input'))
+#     # inp_string = inp_string.replace('{', '(')
+#     # inp_string = inp_string.replace('}', ')')
+#     # inp_string = inp_string.replace(': ', '=')
+#     # inp_string = inp_string.replace(', ', ',')
+#     # inp_list = inp_string.split()
+#     #
+#
+#     print(Solution.addTwoNumbers(inp_list))
+
+#  ListNode{val: 2, next: ListNode{val: 4, next: ListNode{val: 3, next: None}}} ListNode{val: 5, next: ListNode{val: 6, next: ListNode{val: 4, next: None}}}
