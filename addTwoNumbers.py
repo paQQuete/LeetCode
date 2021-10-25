@@ -71,13 +71,25 @@ class Solution:
         l2revExtr = self.extractValues(l2reverse)
 
         rawSum = l1revExtr + l2revExtr
-        revertSum = reversed(rawSum)
+        revertSum = reversed(str(rawSum))
+        out = self.rec_output(revertSum)
+        print(out)
 
 
 
 
 
-        return l1revExtr + l2revExtr
+
+        return out
+
+    def rec_output(self, rSum: str):
+        revertSum = str(rSum)
+
+        for i in range(0, len(revertSum)):
+            if i != len(revertSum):
+                return ListNode(val=revertSum[i], next=ListNode(val=revertSum[i+1], next=ListNode))
+            else:
+                return ListNode(val=revertSum[i], next=None)
 
 
 # if __name__ == '__main__':
