@@ -1,4 +1,6 @@
 import json
+
+
 # Definition for singly-linked list.
 class ListNode:
     def __init__(self, val=0, next=None):
@@ -7,7 +9,6 @@ class ListNode:
 
 
 class Solution:
-
 
     def reversalLinkedList(self, cascadeList):
         current = cascadeList
@@ -22,7 +23,6 @@ class Solution:
 
         return prev
 
-
     def extractValues(self, cascadeList) -> int:
         extrValue = str()
         current = cascadeList
@@ -32,19 +32,8 @@ class Solution:
 
         return int(extrValue)
 
-
-
-
-
-
     def unpackSolution(self, sum: int) -> list:
         return sum.split('')
-
-
-
-
-
-
 
     def input_parse(self, inp_string):
         inp_string = inp_string.replace('{', '(')
@@ -55,14 +44,10 @@ class Solution:
 
         return inp_string
 
-
     def addTwoNumbers(self, l1, l2):
-
-
 
         # l1 = eval(self.input_parse(l1))
         # l2 = eval(self.input_parse(l2))
-
 
         l1reverse = self.reversalLinkedList(l1)
         l2reverse = self.reversalLinkedList(l2)
@@ -72,25 +57,11 @@ class Solution:
 
         rawSum = l1revExtr + l2revExtr
         revertSum = reversed(str(rawSum))
-        out = self.rec_output(revertSum)
-        print(out)
 
+        return revertSum
 
-
-
-
-
-        return out
-
-    def rec_output(self, rSum: str):
-        revertSum = str(rSum)
-
-        for i in range(0, len(revertSum)):
-            if i != len(revertSum):
-                return ListNode(val=revertSum[i], next=ListNode(val=revertSum[i+1], next=ListNode))
-            else:
-                return ListNode(val=revertSum[i], next=None)
-
+    def makeListNode(self):
+        return ListNode(next=self.makeListNode())
 
 # if __name__ == '__main__':
 #     # l1, l2 = Solution.addTwoNumbers(l1=ListNode(val=2, next=
