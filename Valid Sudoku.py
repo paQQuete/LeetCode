@@ -40,7 +40,47 @@ class Solution:
             stroka.append(list2ndElement)
             stroka.append(list3rdElement)
 
-        for
+        # i = 0
+        # matrixCount = 0
+        # while i < 3: #итератор по столбцам!
+        #     for line in board:
+        #         for eachElement in line[i]:
+        #             if eachElement in possdigits and eachElement in checkDigit:
+        #                 return False
+        #             else:
+        #                 checkDigit.append(eachElement)
+        #         matrixCount += 1
+        #         if matrixCount >= 3:
+        #             pass
+        #
+        # temp3x3matrix = list()
+        # matrixCount = 0
+        # j = 0 #итератор столбца
+        # i = 0 #итератор линии в старой борде
+        # while True:
+        #     temp3x3matrix.append(board[i][j])
+        #     pass
+        #
+        unsortedMatrixList = [[] for x in range(0,9)]
+        usedLineCount = 0
+        listStringBoard = str()
+        for line in board:
+            for oneThird in line:
+                for each in oneThird:
+                    listStringBoard += each
+
+        listStringBoard = list(listStringBoard)
+
+        i = 0
+        while stringBoard:
+
+            for itemp in range(0,3):
+                unsortedMatrixList[i].append(listStringBoard.pop(0)
+            if usedLineCount
+
+            i += 1
+
+
 
         return True
 
