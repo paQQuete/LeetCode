@@ -4,7 +4,7 @@ class Solution:
         checkDigit = list()
         dictStolbecListvalues = {i: list() for i in range(0, 9)}
         checkMatrix = [[[[i for i in range(0, 3)] for i in range(0,3)] for i in range(0, 3)] for i in range(0, 3)]
-        i, j, k = 0
+
         dictMatrixs = {i: list() for i in range(0, 9)}
 
         # проверка повторений в строках доски
@@ -30,10 +30,17 @@ class Solution:
                     checkDigit.append(value[i])
             checkDigit = list()
 
-        # формируем словарь матриц 3х3 и сразу проверяем, переходим к новой матрице и т.д.
+        # нарезаем борду по спискам с 3 элементами, т.е. режем строку на 3, очищаем и кладём 3 списка (по 3 эл. в каждом)
+        for stroka in board:
+            list1stElement = stroka[0:3]
+            list2ndElement = stroka[3:6]
+            list3rdElement = stroka[6:9]
+            stroka.clear()
+            stroka.append(list1stElement)
+            stroka.append(list2ndElement)
+            stroka.append(list3rdElement)
 
-
-
+        for
 
         return True
 
