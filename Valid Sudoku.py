@@ -61,7 +61,7 @@ class Solution:
         #     temp3x3matrix.append(board[i][j])
         #     pass
         #
-        unsortedMatrixList = [[] for x in range(0,9)]
+        unsortedMatrixList = [[[],[],[]] for x in range(0,3)]
         usedLineCount = 0
         listStringBoard = str()
         for line in board:
@@ -71,15 +71,27 @@ class Solution:
 
         listStringBoard = list(listStringBoard)
 
-        i = 0
-        while stringBoard:
+        # пихаем все знаки поля 3х3 в отдельные списки
+        matrixNumber = 0
+        while listStringBoard:
 
-            for itemp in range(0,3):
-                unsortedMatrixList[i].append(listStringBoard.pop(0)
-            if usedLineCount
+            for stroka in unsortedMatrixList:
+                for i in range(0,9):
+                    for j in range(0,3):
+                        stroka[matrixNumber].append(listStringBoard.pop(0))
+                    matrixNumber += 1
+                    if matrixNumber == 3:
+                        matrixNumber = 0
 
-            i += 1
-
+        # проверяем каждое поле 3х3 по сформированным спискам
+        for stroka in unsortedMatrixList:
+            for eachMatrix in stroka:
+                for eachElem in eachMatrix:
+                    if eachElem in checkDigit and eachElem in possdigits:
+                        return False
+                    else:
+                        checkDigit.append(eachElem)
+                checkDigit = list()
 
 
         return True
